@@ -12,15 +12,13 @@ THREE.Scene = function() {}
 
 #### 两大相机
 
-
-
-
-
 透视相机：透视投影，即离视点近大远小，远道极点即为消失，成为灭点
 
 正投影相机：远处和近处的一样大
 
 相机参数
 THREE.PerspectiveCamera = function(fov, aspect, near, far)
+
+### 
 
 ### 3. 渲染器
