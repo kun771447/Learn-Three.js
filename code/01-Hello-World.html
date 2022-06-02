@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>My first three.js app</title>
+		<style>
+			body { margin: 0; }
+		</style>
+	</head>
+	<body>
+		<script src="js/three.js"></script>
+		<script>
+			let renderer, camera, scene, geometry, material, mesh;
+
+			// 初始化渲染器
+			const initRenderer = () => {
+				// 实例化渲染器
+				renderer = new THREE.WebGLRenderer();
+				// 设置宽和高
+				renderer.setSize( window.innerWidth, window.innerHeight );
+				// 添加到 dom
+				document.body.appendChild( renderer.domElement );
+			}
+
+			// 初始化场景
+			const initScene = () => {
+				// 实例化场景
+				scene = new THREE.Scene();
+			}
+
+			// 初始化相机
+			const initCamera = () => {
+				// 实例化相机
+				camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 0.1, 200 );
+				// x, y, z
+				camera.position.set(0, 0, 15);
+			}
+
+			// 创建模型
+			const initMesh = () => {
+				// 创建几何体
+				geometry = new THREE.BoxGeometry( 2, 2, 2 );
+				// 创建材质, 七彩材质
+				material = new THREE.MeshNormalMaterial();
+				// 创建网络
+				mesh = new THREE.Mesh( geometry, material );
+				// 将网格添加到场景
+				scene.add( mesh );
+ 			}
+
+			function animate() {
+				requestAnimationFrame( animate ); // 循环调用函数
+
+				// 每帧网格模型沿 x 轴旋转 0.01 弧度
+				mesh.rotation.x += 0.01; 
+				// 每帧网格模型沿 y 轴旋转 0.02 弧度
+				mesh.rotation.y += 0.01; 
+
+				// 渲染界面
+				renderer.render( scene, camera ); 
+			};
+
+			const init = () => {
+				// 3D 三要素
+				initRenderer(); // 渲染
+				initScene(); // 场景
+				initCamera(); // 相机
+
+				initMesh(); // 物体
+
+				animate();
+			}
+			init();
+		</script>
+	</body>
+</html>
